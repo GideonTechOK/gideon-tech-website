@@ -263,6 +263,103 @@
             border-color: var(--cp-accent-soft);
         }
 
+        /* About Us Section */
+        .about-section {
+            padding: 4rem 2rem;
+            background: var(--cp-surface);
+        }
+
+        .about-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .about-intro {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+        .about-intro p {
+            color: var(--cp-text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .about-pillar {
+            background: var(--cp-bg-elevated);
+            border: 1px solid var(--cp-border);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+
+        .about-pillar h3 {
+            color: var(--cp-accent);
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .about-pillar p {
+            color: var(--cp-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .about-values {
+            margin-top: 3rem;
+        }
+
+        .about-values h3 {
+            text-align: center;
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            color: var(--cp-text);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+        }
+
+        .value-item {
+            border-left: 3px solid var(--cp-accent);
+            padding: 0.25rem 0 0.25rem 1.25rem;
+        }
+
+        .value-item h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            color: var(--cp-text);
+        }
+
+        .value-item p {
+            color: var(--cp-text-muted);
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        @media (max-width: 900px) {
+            .about-pillars,
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .about-pillars,
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .value-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
@@ -782,6 +879,7 @@
         <nav>
             <a href="#" class="logo">Gideon Technologies</a>
             <ul class="nav-links">
+                <li><a href="#about">About</a></li>
                 <li><a href="#markets">Markets</a></li>
                 <li><a href="#services">Core Services</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -798,6 +896,57 @@
         <div class="hero-buttons">
             <a href="#contact" class="cta-button">Schedule a Consultation</a>
             <a href="#services" class="secondary-button">Explore Services</a>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <h2 class="section-title">Who We Are</h2>
+            <div class="about-intro">
+                <p>Gideon Technologies, founded in 2016, specializes in managed services for small to medium businesses. We help our clients strengthen business processes, productivity, communication, and collaboration, and monitor and meet regulatory requirements. Most importantly, we remove the barriers to critical and timely information and simplify users' everyday experience.</p>
+            </div>
+
+            <div class="about-pillars">
+                <div class="about-pillar">
+                    <h3>Mission</h3>
+                    <p>Gideon enables customers to achieve excellence in mission-critical initiatives by removing obstacles, reducing costs, and engineering roadmaps to success.</p>
+                </div>
+                <div class="about-pillar">
+                    <h3>Vision</h3>
+                    <p>To consistently provide our customers with quality services and products.</p>
+                </div>
+                <div class="about-pillar">
+                    <h3>Certifications & Credentials</h3>
+                    <p>Our consultants hold Microsoft certifications across Power Platform, Azure, and Modern Workplace solutions, backed by hands-on experience serving GCC and commercial clients.</p>
+                </div>
+            </div>
+
+            <div class="about-values">
+                <h3>Our Values</h3>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <h4>People</h4>
+                        <p>As brilliant, talented, and professional consultants, we are Gideon's most prized assets. We are passionate about supporting each other in our continued growth to fulfill our ambitions.</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Excellence</h4>
+                        <p>We aspire to flawless execution, demanding a higher standard of ourselves than our clients demand of us.</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Teamwork</h4>
+                        <p>Gideon is a group of strong and diverse individuals unified by a clear, common purpose. We are cohesive across clients and skillsets, collaborating to deliver the best solutions.</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Accountability</h4>
+                        <p>We take responsibility for our personal performance in all of our decisions and actions. We communicate clearly and timely to ensure expectations are set and understood.</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Innovation</h4>
+                        <p>Gideon thrives on creativity and ingenuity, delivering cutting-edge solutions by staying one step ahead, anticipating change, and knowing how it will affect our customers.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
