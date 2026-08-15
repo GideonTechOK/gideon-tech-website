@@ -132,6 +132,10 @@
             list-style: none;
         }
 
+        .nav-links li {
+            position: relative;
+        }
+
         .nav-links a {
             color: var(--cp-text);
             text-decoration: none;
@@ -141,6 +145,43 @@
 
         .nav-links a:hover {
             color: var(--cp-accent);
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            min-width: 260px;
+            background: var(--cp-surface);
+            border: 1px solid var(--cp-border);
+            border-radius: 0.625rem;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+            list-style: none;
+            padding: 0.45rem;
+            z-index: 200;
+        }
+
+        .submenu li {
+            position: static;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 0.5rem 0.65rem;
+            border-radius: 0.45rem;
+            color: var(--cp-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .submenu a:hover {
+            background: var(--cp-bg-elevated);
+            color: var(--cp-accent);
+        }
+
+        .has-submenu:hover .submenu,
+        .has-submenu:focus-within .submenu {
+            display: block;
         }
 
         .cta-button {
@@ -957,7 +998,16 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#markets">Customer Experience</a></li>
                 <li><a href="#services">Core Services</a></li>
-                <li><a href="m-power-services.html">M-Power Plans</a></li>
+                <li class="has-submenu">
+                    <a href="m-power-services.html">M-Power Plans</a>
+                    <ul class="submenu">
+                        <li><a href="m-power-services.html#monitoring">Monitoring Plans</a></li>
+                        <li><a href="m-power-services.html#managed">Managed Service Plans</a></li>
+                        <li><a href="m-power-services.html#azure-ai">Azure AI Managed Services</a></li>
+                        <li><a href="m-power-services.html#training">Training Services</a></li>
+                        <li><a href="m-power-services.html#pricing-policies">Scope & Policies</a></li>
+                    </ul>
+                </li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="cta-button">Get Started</button>
