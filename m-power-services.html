@@ -147,9 +147,10 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 3rem 1.5rem 2rem;
+            text-align: center;
         }
         .hero h1 { font-size: 2.1rem; margin-bottom: 0.8rem; }
-        .hero p { color: var(--cp-text-muted); max-width: 900px; }
+        .hero p { color: var(--cp-text-muted); max-width: 900px; margin-left: auto; margin-right: auto; }
         .meta {
             display: inline-block;
             margin-top: 1rem;
@@ -159,6 +160,11 @@
             border-radius: 999px;
             font-size: 0.85rem;
             font-weight: 700;
+        }
+        html[data-theme="dark"] .meta {
+            background: rgba(56, 178, 172, 0.22);
+            color: #d9fffb;
+            border: 1px solid rgba(56, 178, 172, 0.55);
         }
         .section {
             max-width: 1200px;
