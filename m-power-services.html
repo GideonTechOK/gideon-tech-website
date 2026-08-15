@@ -6,18 +6,45 @@
     <title>M-Power Managed Services | Gideon Technologies</title>
     <meta name="description" content="M-Power Managed Services plans, monitoring options, Azure AI managed services, and standalone Microsoft training from Gideon Technologies.">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230D8B92'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Arial, sans-serif' font-weight='bold' fill='white' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
+    <script>
+        (() => {
+            const param = new URLSearchParams(window.location.search).get("scoutTheme");
+            const theme = param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+            document.documentElement.setAttribute("data-theme", theme);
+        })();
+    </script>
     <style>
         :root {
+            color-scheme: light;
             --cp-bg: #f7fafc;
             --cp-bg-elevated: #edf2f7;
             --cp-surface: #ffffff;
+            --cp-surface-soft: #f5f7fa;
             --cp-border: #cbd5e0;
+            --cp-border-strong: #a0aec0;
             --cp-text: #1a202c;
             --cp-text-muted: #4a5568;
+            --cp-text-soft: #718096;
             --cp-accent: #0d8b92;
             --cp-accent-hover: #0a6f76;
             --cp-accent-fg: #ffffff;
-            --cp-shadow: 0 10px 32px rgba(0,0,0,0.08);
+            --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+        }
+        html[data-theme="dark"] {
+            color-scheme: dark;
+            --cp-bg: #0f1419;
+            --cp-bg-elevated: #1a202c;
+            --cp-surface: #2d3748;
+            --cp-surface-soft: #374151;
+            --cp-border: #4a5568;
+            --cp-border-strong: #718096;
+            --cp-text: #f7fafc;
+            --cp-text-muted: #cbd5e0;
+            --cp-text-soft: #a0aec0;
+            --cp-accent: #38b2ac;
+            --cp-accent-hover: #319795;
+            --cp-accent-fg: #0f1419;
+            --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -34,33 +61,75 @@
             border-bottom: 1px solid var(--cp-border);
         }
         nav {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 1rem 1.5rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 1rem;
         }
         .logo {
-            color: var(--cp-text);
+            font-size: 1.5rem;
+            color: var(--cp-accent);
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.1rem;
         }
         .nav-links {
             display: flex;
-            gap: 1rem;
+            gap: 2rem;
             list-style: none;
-            flex-wrap: wrap;
         }
+        .nav-links li { position: relative; }
         .nav-links a {
+            color: var(--cp-text);
             text-decoration: none;
-            color: var(--cp-text-muted);
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
         }
         .nav-links a:hover { color: var(--cp-accent); }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            min-width: 260px;
+            background: var(--cp-surface);
+            border: 1px solid var(--cp-border);
+            border-radius: 0.625rem;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+            list-style: none;
+            padding: 0.45rem;
+            z-index: 200;
+        }
+        .submenu li { position: static; }
+        .submenu a {
+            display: block;
+            padding: 0.5rem 0.65rem;
+            border-radius: 0.45rem;
+            color: var(--cp-text-muted);
+            font-size: 0.9rem;
+        }
+        .submenu a:hover {
+            background: var(--cp-bg-elevated);
+            color: var(--cp-accent);
+        }
+        .has-submenu:hover .submenu,
+        .has-submenu:focus-within .submenu { display: block; }
+
+        .cta-button {
+            background: var(--cp-accent);
+            color: var(--cp-accent-fg);
+            padding: 0.65rem 1.5rem;
+            border-radius: 0.625rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .cta-button:hover { background: var(--cp-accent-hover); }
         .hero {
             max-width: 1200px;
             margin: 0 auto;
@@ -154,6 +223,15 @@
         @media (max-width: 900px) {
             .grid-3 { grid-template-columns: 1fr; }
         }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            nav { padding: 0.75rem 1rem; }
+            .cta-button {
+                padding: 0.375rem 0.75rem;
+                font-size: 0.64rem;
+                border-radius: 0.47rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -161,12 +239,22 @@
         <nav>
             <a class="logo" href="index.html">Gideon Technologies</a>
             <ul class="nav-links">
-                <li><a href="#monitoring">Monitoring</a></li>
-                <li><a href="#managed">Managed Services</a></li>
-                <li><a href="#training">Training</a></li>
-                <li><a href="#pricing-policies">Policies</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#markets">Customer Experience</a></li>
+                <li><a href="index.html#services">Core Services</a></li>
+                <li class="has-submenu">
+                    <a href="m-power-services.html">M-Power Plans</a>
+                    <ul class="submenu">
+                        <li><a href="#monitoring">Monitoring Plans</a></li>
+                        <li><a href="#managed">Managed Service Plans</a></li>
+                        <li><a href="#azure-ai">Azure AI Managed Services</a></li>
+                        <li><a href="#training">Training Services</a></li>
+                        <li><a href="#pricing-policies">Scope & Policies</a></li>
+                    </ul>
+                </li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
+            <a href="index.html#contact" class="cta-button">Get Started</a>
         </nav>
     </header>
 
