@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gideon Technologies - GCC & State/Local Government M365 Tenant Experts</title>
-    <meta name="description" content="Gideon Technologies delivers Power Platform, Microsoft 365, SharePoint, Azure, and Microsoft AI solutions with specialized support for GCC state and local government M365 tenants and commercial customers.">
-    <meta name="keywords" content="Power Platform, Microsoft 365, Office 365, SharePoint, Azure, Microsoft AI, GCC, State and Local Government M365 Tenant, government cloud consulting, managed services">
+    <meta name="description" content="Gideon Technologies delivers Power Platform, Microsoft 365, SharePoint, Azure, and Microsoft AI solutions with specialized support for GCC state and local government M365 tenants and commercial customers, including M-Power managed services and training.">
+    <meta name="keywords" content="Power Platform, Microsoft 365, Office 365, SharePoint, Azure, Microsoft AI, GCC, State and Local Government M365 Tenant, government cloud consulting, managed services, M-Power managed services, Microsoft training">
     <meta name="author" content="Gideon Technologies">
     <link rel="canonical" href="https://www.gideon-tech.com/">
 
@@ -180,7 +180,8 @@
         }
 
         .has-submenu:hover .submenu,
-        .has-submenu:focus-within .submenu {
+        .has-submenu:focus-within .submenu,
+        .has-submenu.open .submenu {
             display: block;
         }
 
@@ -1451,6 +1452,28 @@
                     e.preventDefault();
                     openContactForm();
                 });
+            }
+        });
+
+        // Make submenu usable on touch devices
+        document.querySelectorAll('.has-submenu > a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.matchMedia('(hover: none)').matches) {
+                    const parent = this.parentElement;
+                    if (!parent.classList.contains('open')) {
+                        e.preventDefault();
+                        document.querySelectorAll('.has-submenu.open').forEach(item => {
+                            if (item !== parent) item.classList.remove('open');
+                        });
+                        parent.classList.add('open');
+                    }
+                }
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.has-submenu')) {
+                document.querySelectorAll('.has-submenu.open').forEach(item => item.classList.remove('open'));
             }
         });
     </script>
