@@ -324,12 +324,15 @@
         }
 
         .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 1.75rem;
         }
 
         .value-item {
+            flex: 1 1 280px;
+            max-width: calc(33.333% - 1.75rem);
             border-left: 3px solid var(--cp-accent);
             padding: 0.25rem 0 0.25rem 1.25rem;
         }
@@ -347,16 +350,22 @@
         }
 
         @media (max-width: 900px) {
-            .about-pillars,
-            .values-grid {
+            .about-pillars {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .value-item {
+                max-width: calc(50% - 1.75rem);
             }
         }
 
         @media (max-width: 600px) {
-            .about-pillars,
-            .values-grid {
+            .about-pillars {
                 grid-template-columns: 1fr;
+            }
+
+            .value-item {
+                max-width: 100%;
             }
         }
 
