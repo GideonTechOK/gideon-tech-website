@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gideon Technologies - Microsoft Cloud & AI Solutions</title>
+    <script>
+        (() => {
+            const param = new URLSearchParams(window.location.search).get("scoutTheme");
+            const theme = param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+            document.documentElement.setAttribute("data-theme", theme);
+        })();
+    </script>
+    <style>
+        :root {
+            color-scheme: light;
+            --cp-bg: #f7f4ef;
+            --cp-bg-elevated: #fcfbf8;
+            --cp-surface: #ffffff;
+            --cp-surface-soft: #f5f5f5;
+            --cp-border: #dedede;
+            --cp-border-strong: #919191;
+            --cp-text: #242424;
+            --cp-text-muted: #5c5c5c;
+            --cp-text-soft: #6f6f6f;
+            --cp-accent: #b11f4b;
+            --cp-accent-hover: #9a1a41;
+            --cp-accent-soft: rgba(177, 31, 75, 0.08);
+            --cp-accent-fg: #ffffff;
+            --cp-success: #16a34a;
+            --cp-danger: #dc2626;
+            --cp-warning: #f59e0b;
+            --cp-link: #0078d4;
+            --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+            --cp-overlay: rgba(255, 255, 255, 0.8);
+            --cp-panel: rgba(255, 255, 255, 0.86);
+            --cp-panel-strong: rgba(255, 255, 255, 0.96);
+            --cp-sheen: rgba(255, 255, 255, 0.55);
+            --cp-highlight: rgba(177, 31, 75, 0.12);
+        }
+        
+        html[data-theme="dark"] {
+            color-scheme: dark;
+            --cp-bg: #3d3b3a;
+            --cp-bg-elevated: #343231;
+            --cp-surface: #292929;
+            --cp-surface-soft: #2e2e2e;
+            --cp-border: #474747;
+            --cp-border-strong: #5f5f5f;
+            --cp-text: #dedede;
+            --cp-text-muted: #919191;
+            --cp-text-soft: #b0b0b0;
+            --cp-accent: #fd8ea1;
+            --cp-accent-hover: #fb7b91;
+            --cp-accent-soft: rgba(253, 142, 161, 0.14);
+            --cp-accent-fg: #1a1a1a;
+            --cp-success: #4ade80;
+            --cp-danger: #f87171;
+            --cp-warning: #fbbf24;
+            --cp-link: #4da6ff;
+            --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+            --cp-overlay: rgba(41, 41, 41, 0.88);
+            --cp-panel: rgba(41, 41, 41, 0.72);
+            --cp-panel-strong: rgba(41, 41, 41, 0.96);
+            --cp-sheen: rgba(255, 255, 255, 0.04);
+            --cp-highlight: rgba(253, 142, 161, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cp-bg);
+            color: var(--cp-text);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--cp-surface);
+            border-bottom: 1px solid var(--cp-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--cp-accent);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--cp-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--cp-accent);
+        }
+
+        .cta-button {
+            background: var(--cp-accent);
+            color: var(--cp-accent-fg);
+            padding: 0.65rem 1.5rem;
+            border-radius: 0.625rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .cta-button:hover {
+            background: var(--cp-accent-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero-subtitle {
+            color: var(--cp-text-muted);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--cp-text) 0%, var(--cp-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--cp-text-soft);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .secondary-button {
+            background: var(--cp-surface-soft);
+            color: var(--cp-text);
+            padding: 0.65rem 1.5rem;
+            border-radius: 0.625rem;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid var(--cp-border);
+            transition: all 0.3s;
+        }
+
+        .secondary-button:hover {
+            background: var(--cp-surface);
+            border-color: var(--cp-accent);
+        }
+
+        /* Value Propositions */
+        .value-section {
+            background: var(--cp-bg-elevated);
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--cp-text);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--cp-text-muted);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .value-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: var(--cp-surface);
+            border: 1px solid var(--cp-border);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .value-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+            border-color: var(--cp-accent-soft);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--cp-text);
+        }
+
+        .value-card p {
+            color: var(--cp-text-soft);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 4rem 2rem;
+            background: var(--cp-surface);
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, var(--cp-bg-elevated) 0%, var(--cp-bg) 100%);
+            border: 1px solid var(--cp-border);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--cp-accent);
+            box-shadow: 0 12px 36px var(--cp-accent-soft);
+        }
+
+        .service-icon {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: var(--cp-accent-soft);
+            border-radius: 0.625rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--cp-text);
+        }
+
+        .service-card p {
+            color: var(--cp-text-soft);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* Market Expertise */
+        .market-section {
+            padding: 4rem 2rem;
+            background: var(--cp-bg-elevated);
+        }
+
+        .market-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .market-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+            align-items: center;
+        }
+
+        .market-card {
+            background: var(--cp-surface);
+            border-left: 4px solid var(--cp-accent);
+            border-radius: 0.625rem;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .market-badge {
+            display: inline-block;
+            background: var(--cp-accent-soft);
+            color: var(--cp-accent);
+            padding: 0.5rem 1rem;
+            border-radius: 0.625rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .market-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--cp-text);
+        }
+
+        .market-card p {
+            color: var(--cp-text-soft);
+            line-height: 1.8;
+        }
+
+        /* Tech Stack Section */
+        .tech-section {
+            padding: 4rem 2rem;
+            background: var(--cp-surface);
+        }
+
+        .tech-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tech-badge {
+            background: linear-gradient(135deg, var(--cp-bg-elevated) 0%, var(--cp-bg) 100%);
+            border: 2px solid var(--cp-border);
+            border-radius: 0.625rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .tech-badge:hover {
+            border-color: var(--cp-accent);
+            box-shadow: 0 4px 12px var(--cp-accent-soft);
+            transform: translateY(-2px);
+        }
+
+        .tech-badge-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .tech-badge-name {
+            font-weight: 600;
+            color: var(--cp-text);
+            font-size: 0.95rem;
+        }
+
+        /* Why Choose Us */
+        .why-section {
+            padding: 4rem 2rem;
+            background: var(--cp-bg-elevated);
+        }
+
+        .why-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .why-item {
+            text-align: center;
+        }
+
+        .why-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .why-item h4 {
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
+            color: var(--cp-text);
+        }
+
+        .why-item p {
+            color: var(--cp-text-soft);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--cp-accent) 0%, #a01a48 100%);
+            color: var(--cp-accent-fg);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0 0 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-primary {
+            background: var(--cp-accent-fg);
+            color: var(--cp-accent);
+            padding: 0.75rem 2rem;
+            border-radius: 0.625rem;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .cta-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--cp-surface);
+            border-top: 1px solid var(--cp-border);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--cp-text);
+            font-weight: 600;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: var(--cp-text-soft);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--cp-accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--cp-border);
+            color: var(--cp-text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .market-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Gideon</a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#markets">Markets</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="cta-button">Get Started</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <p class="hero-subtitle">Enterprise Microsoft Solutions</p>
+        <h1>Transform Your Organization with Microsoft's Complete Cloud & AI Platform</h1>
+        <p>Gideon Technologies specializes in Power Platform, Office 365, SharePoint, Azure, and Microsoft AI Stack—delivering innovative solutions for GCC and commercial customers.</p>
+        <div class="hero-buttons">
+            <a href="#contact" class="cta-button">Schedule a Consultation</a>
+            <a href="#services" class="secondary-button">Explore Services</a>
+        </div>
+    </section>
+
+    <!-- Value Propositions -->
+    <section class="value-section">
+        <h2 class="section-title">Why Partner with Gideon?</h2>
+        <p class="section-subtitle">Trusted expertise in Microsoft enterprise technologies</p>
+        <div class="value-grid">
+            <div class="value-card">
+                <div class="value-icon">⚡</div>
+                <h3>Rapid Implementation</h3>
+                <p>Accelerated deployment timelines with proven methodologies and expert consultants who understand your unique business requirements.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🎯</div>
+                <h3>Strategic Alignment</h3>
+                <p>Solutions crafted to align with your organizational goals, ensuring maximum ROI and sustainable competitive advantage.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🔐</div>
+                <h3>GCC & Compliance Expertise</h3>
+                <p>Deep understanding of government compliance requirements and commercial security standards across all Microsoft services.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="services-container">
+            <h2 class="section-title">Core Services</h2>
+            <p class="section-subtitle">Comprehensive solutions across the Microsoft ecosystem</p>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Power Platform</h3>
+                    <p>Build custom applications, automation flows, and analytics dashboards without extensive coding. Empower your teams to innovate faster.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Office 365 & Teams</h3>
+                    <p>Modernize collaboration with integrated Office applications, Teams deployment, and productivity optimization strategies.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📚</div>
+                    <h3>SharePoint & Content Management</h3>
+                    <p>Streamline information management, build intelligent intranets, and establish enterprise content governance frameworks.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3>Azure Cloud Solutions</h3>
+                    <p>Architect scalable, secure cloud infrastructure. Migration planning, hybrid deployments, and optimized cloud operations.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>Microsoft AI Stack</h3>
+                    <p>Leverage Copilot, AI Builder, and cognitive services. Deploy intelligent solutions that augment human capabilities.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Managed Services & Support</h3>
+                    <p>Ongoing optimization, monitoring, and support to ensure your Microsoft investments deliver sustained value.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Expertise -->
+    <section class="market-section" id="markets">
+        <div class="market-container">
+            <h2 class="section-title">Dual Market Expertise</h2>
+            <p class="section-subtitle">Specialized for government and enterprise success</p>
+            <div class="market-grid">
+                <div class="market-card">
+                    <span class="market-badge">Government Community Cloud</span>
+                    <h3>GCC Solutions</h3>
+                    <p>Certified expertise in government-specific requirements, compliance standards, and deployment architectures. We understand the unique challenges of federal, state, and local government agencies.</p>
+                </div>
+                <div class="market-card">
+                    <span class="market-badge">Commercial Enterprise</span>
+                    <h3>Commercial Solutions</h3>
+                    <p>Proven track record delivering enterprise-scale solutions for commercial organizations. From startups to Fortune 500 companies, we accelerate digital transformation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section class="tech-section" id="technology">
+        <div class="tech-container">
+            <h2 class="section-title">Our Technology Focus</h2>
+            <p class="section-subtitle">Expert across the complete Microsoft ecosystem</p>
+            <div class="tech-grid">
+                <div class="tech-badge">
+                    <div class="tech-badge-icon">⚡</div>
+                    <div class="tech-badge-name">Power Apps</div>
+                </div>
+                <div class="tech-badge">
+                    <div class="tech-badge-icon">🔄</div>
+                    <div class="tech-badge-name">Power Automate</div>
+                </div>
+                <div class="tech-badge">
+                    <div class="tech-badge-icon">📈</div>
+                    <div class="tech-badge-name">Power BI</div>
+                </div>
+                <div class="tech-badge">
+                    <div class="tech-badge-icon">🤖</div>
+                    <div class="tech-badge-name">Copilot & AI</div>
+                </div>
+                <div class="tech-badge">
+                    <div class="tech-badge-icon">📧</div>
+                    <div class="tech-badge-name">Exchange Online</div>
+                </div>
+                <div class="tech-badge">
+                    <div class="tech-badge-icon">💬</div>
+                    <div class="tech-badge-name">Teams</div>
+                </div>
+                <div class="tech-badge">
+                    <div class="tech-badge-icon">📚</div>
+                    <div class="tech-badge-name">SharePoint</div>
+                </div>
+                <div class="tech-badge">
+                    <div class="tech-badge-icon">☁️</div>
+                    <div class="tech-badge-name">Azure</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="why-section">
+        <div class="why-container">
+            <h2 class="section-title">Gideon Difference</h2>
+            <p class="section-subtitle">What sets us apart</p>
+            <div class="why-grid">
+                <div class="why-item">
+                    <div class="why-icon">✓</div>
+                    <h4>Certified Experts</h4>
+                    <p>Microsoft-certified professionals with deep platform expertise and proven delivery track records.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">✓</div>
+                    <h4>On-Time, On-Budget</h4>
+                    <p>Rigorous project management ensures predictable outcomes and cost control throughout implementation.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">✓</div>
+                    <h4>Compliance First</h4>
+                    <p>Built-in governance, security, and compliance considerations from day one across GCC and commercial.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">✓</div>
+                    <h4>Strategic Partnership</h4>
+                    <p>Long-term engagement focused on your success, not just project completion and hand-off.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <h2>Ready to Transform Your Enterprise?</h2>
+        <p>Let's discuss how Gideon Technologies can unlock the power of Microsoft's cloud and AI platform for your organization.</p>
+        <a href="mailto:contact@gideon-tech.com" class="cta-primary">Contact Us Today</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Gideon Technologies</h4>
+                <p>Enterprise Microsoft consulting and implementation solutions.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Power Platform</a></li>
+                    <li><a href="#services">Office 365</a></li>
+                    <li><a href="#services">SharePoint</a></li>
+                    <li><a href="#services">Azure</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Markets</h4>
+                <ul>
+                    <li><a href="#markets">GCC Solutions</a></li>
+                    <li><a href="#markets">Commercial</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Gideon Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
