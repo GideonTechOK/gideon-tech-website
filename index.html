@@ -408,6 +408,10 @@
             .service-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .plans-preview-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 600px) {
@@ -439,6 +443,46 @@
             color: var(--cp-text-soft);
             font-size: 0.9rem;
             line-height: 1.7;
+        }
+
+        /* M-Power Plans Preview */
+        .plans-preview {
+            padding: 4rem 2rem;
+            background: var(--cp-surface);
+        }
+
+        .plans-preview-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .plans-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .plans-preview-card {
+            background: linear-gradient(135deg, var(--cp-bg-elevated) 0%, var(--cp-bg) 100%);
+            border: 1px solid var(--cp-border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+        }
+
+        .plans-preview-card h4 {
+            color: var(--cp-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .plans-preview-card p {
+            color: var(--cp-text-soft);
+            font-size: 0.92rem;
+        }
+
+        .plans-preview-cta {
+            margin-top: 2rem;
+            text-align: center;
         }
 
         /* Market Expertise */
@@ -913,6 +957,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#markets">Customer Experience</a></li>
                 <li><a href="#services">Core Services</a></li>
+                <li><a href="m-power-services.html">M-Power Plans</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="cta-button">Get Started</button>
@@ -927,6 +972,31 @@
         <div class="hero-buttons">
             <a href="#contact" class="cta-button">Schedule a Consultation</a>
             <a href="#services" class="secondary-button">Explore Services</a>
+        </div>
+    </section>
+
+    <!-- M-Power Plans Preview -->
+    <section class="plans-preview">
+        <div class="plans-preview-container">
+            <h2 class="section-title">M-Power Managed Services</h2>
+            <p class="section-subtitle">Flexible monthly support and training aligned to your Microsoft priorities.</p>
+            <div class="plans-preview-grid">
+                <div class="plans-preview-card">
+                    <h4>Monitoring Plans</h4>
+                    <p>Lightweight monthly monitoring with expert findings and recommendations for SharePoint and Power Platform health.</p>
+                </div>
+                <div class="plans-preview-card">
+                    <h4>Managed Service Plans</h4>
+                    <p>10, 20, and 40-hour plans for administration, troubleshooting, governance, optimization, and technical guidance.</p>
+                </div>
+                <div class="plans-preview-card">
+                    <h4>Standalone Training</h4>
+                    <p>4-hour and 8-hour Microsoft training for users, makers, and admins across SharePoint, Power Platform, and Copilot.</p>
+                </div>
+            </div>
+            <div class="plans-preview-cta">
+                <a href="m-power-services.html" class="cta-button">View M-Power Plans & Pricing</a>
+            </div>
         </div>
     </section>
 
@@ -1150,6 +1220,13 @@
                 <ul>
                     <li><a href="#markets">GCC Solutions</a></li>
                     <li><a href="#markets">Commercial</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>M-Power</h4>
+                <ul>
+                    <li><a href="m-power-services.html">Plans & Pricing</a></li>
+                    <li><a href="m-power-services.html#training">Training Services</a></li>
                 </ul>
             </div>
             <div class="footer-section">
