@@ -695,6 +695,31 @@
             background: var(--cp-accent-hover);
         }
 
+        .form-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .form-status {
+            padding: 0.85rem 1rem;
+            border-radius: 0.625rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .form-status-success {
+            background: rgba(22, 163, 74, 0.1);
+            color: var(--cp-success);
+            border: 1px solid rgba(22, 163, 74, 0.3);
+        }
+
+        .form-status-error {
+            background: rgba(220, 38, 38, 0.1);
+            color: var(--cp-danger);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+        }
+
         /* Why Choose Us */
         .why-section {
             padding: 4rem 2rem;
@@ -1156,7 +1181,8 @@
                 <h2>Let's Get Started</h2>
                 <button class="close-btn" onclick="closeContactForm()">&times;</button>
             </div>
-            <form onsubmit="handleFormSubmit(event)">
+            <form id="gideonContactForm" onsubmit="handleFormSubmit(event)">
+                <div id="formStatus" class="form-status" style="display:none;"></div>
                 <div class="form-group">
                     <label for="name">Full Name *</label>
                     <input type="text" id="name" name="name" required>
@@ -1222,12 +1248,14 @@
                     <textarea id="message" name="message" placeholder="Share your project details, goals, or challenges..."></textarea>
                 </div>
 
-                <button type="submit" class="form-submit">Submit</button>
+                <button type="submit" class="form-submit" id="formSubmitBtn">Submit</button>
             </form>
         </div>
     </div>
 
     <script>
+        const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrpzlnwp";
+
         function openContactForm() {
             document.getElementById("contactModal").classList.add("show");
             document.body.style.overflow = "hidden";
@@ -1238,32 +1266,49 @@
             document.body.style.overflow = "auto";
         }
 
-        function handleFormSubmit(event) {
+        function showFormStatus(message, type) {
+            const statusEl = document.getElementById("formStatus");
+            statusEl.textContent = message;
+            statusEl.className = `form-status form-status-${type}`;
+            statusEl.style.display = "block";
+        }
+
+        async function handleFormSubmit(event) {
             event.preventDefault();
-            
-            const formData = new FormData(event.target);
+
+            const form = event.target;
+            const submitBtn = document.getElementById("formSubmitBtn");
+            const formData = new FormData(form);
+
+            // Add a readable subject line for the Formspree notification email
             const name = formData.get("name");
-            const email = formData.get("email");
-            const phone = formData.get("phone");
-            const company = formData.get("company");
-            const market = formData.get("market");
-            const services = formData.getAll("services").join(", ");
-            const message = formData.get("message");
-            
-            // Compose mailto link with form data
-            const subject = `Gideon Technologies Inquiry from ${name}`;
-            const body = `
-Name: ${name}
-Email: ${email}
-Phone: ${phone}
-Company: ${company}
-Market Type: ${market}
-Services of Interest: ${services || "Not specified"}
-Project Details: ${message || "Not provided"}
-            `.trim();
-            
-            window.location.href = `mailto:contact@gideon-tech.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            closeContactForm();
+            formData.set("_subject", `Gideon Technologies Inquiry from ${name}`);
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Sending...";
+
+            try {
+                const response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: "POST",
+                    body: formData,
+                    headers: { "Accept": "application/json" }
+                });
+
+                if (response.ok) {
+                    showFormStatus("Thank you! Your message has been sent. We'll be in touch within 24 hours.", "success");
+                    form.reset();
+                    setTimeout(closeContactForm, 2500);
+                } else {
+                    const data = await response.json().catch(() => null);
+                    const errorMsg = data && data.errors ? data.errors.map(e => e.message).join(", ") : "Something went wrong. Please try again or email us directly.";
+                    showFormStatus(errorMsg, "error");
+                }
+            } catch (err) {
+                showFormStatus("Network error. Please check your connection and try again, or email contact@gideon-tech.com directly.", "error");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Submit";
+            }
         }
 
         // Close modal when clicking outside the form
