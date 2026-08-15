@@ -364,48 +364,196 @@
             line-height: 1.8;
         }
 
-        /* Tech Stack Section */
-        .tech-section {
+        /* Benefits Section */
+        .benefits-section {
             padding: 4rem 2rem;
             background: var(--cp-surface);
         }
 
-        .tech-container {
+        .benefits-container {
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        .tech-grid {
+        .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .tech-badge {
+        .benefit-item {
             background: linear-gradient(135deg, var(--cp-bg-elevated) 0%, var(--cp-bg) 100%);
-            border: 2px solid var(--cp-border);
+            border: 1px solid var(--cp-border);
             border-radius: 0.625rem;
-            padding: 1.5rem;
-            text-align: center;
+            padding: 2rem;
             transition: all 0.3s;
         }
 
-        .tech-badge:hover {
+        .benefit-item:hover {
             border-color: var(--cp-accent);
-            box-shadow: 0 4px 12px var(--cp-accent-soft);
-            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--cp-accent-soft);
+            transform: translateY(-4px);
         }
 
-        .tech-badge-icon {
-            font-size: 2rem;
-            margin-bottom: 0.75rem;
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
-        .tech-badge-name {
+        .benefit-item h4 {
             font-weight: 600;
             color: var(--cp-text);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .benefit-item p {
+            color: var(--cp-text-soft);
             font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Contact Form Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--cp-surface);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: var(--cp-shadow);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.8rem;
+            color: var(--cp-text);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--cp-text-muted);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: var(--cp-accent);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--cp-text);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--cp-border);
+            border-radius: 0.625rem;
+            font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.95rem;
+            background: var(--cp-bg-elevated);
+            color: var(--cp-text);
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--cp-accent);
+            box-shadow: 0 0 0 3px var(--cp-accent-soft);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .services-checklist {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 0.75rem;
+        }
+
+        .service-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--cp-accent);
+        }
+
+        .service-checkbox label {
+            margin-bottom: 0;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .form-submit {
+            background: var(--cp-accent);
+            color: var(--cp-accent-fg);
+            padding: 0.85rem 2rem;
+            border-radius: 0.625rem;
+            border: none;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .form-submit:hover {
+            background: var(--cp-accent-hover);
         }
 
         /* Why Choose Us */
@@ -557,6 +705,32 @@
             .cta-section h2 {
                 font-size: 1.8rem;
             }
+
+            .services-checklist {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+
+            .modal-header h2 {
+                font-size: 1.5rem;
+            }
+
+            nav {
+                padding: 0.75rem 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .cta-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -669,43 +843,31 @@
         </div>
     </section>
 
-    <!-- Technology Stack -->
-    <section class="tech-section" id="technology">
-        <div class="tech-container">
-            <h2 class="section-title">Our Technology Focus</h2>
-            <p class="section-subtitle">Expert across the complete Microsoft ecosystem</p>
-            <div class="tech-grid">
-                <div class="tech-badge">
-                    <div class="tech-badge-icon">⚡</div>
-                    <div class="tech-badge-name">Power Apps</div>
+    <!-- Technology & Benefits Section -->
+    <section class="benefits-section">
+        <div class="benefits-container">
+            <h2 class="section-title">Why Microsoft Cloud & AI Solutions?</h2>
+            <p class="section-subtitle">The strategic advantages driving modern enterprise transformation</p>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚡</div>
+                    <h4>Increased Efficiency</h4>
+                    <p>Automate manual processes and free your teams to focus on strategic, high-value work that drives business growth.</p>
                 </div>
-                <div class="tech-badge">
-                    <div class="tech-badge-icon">🔄</div>
-                    <div class="tech-badge-name">Power Automate</div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💰</div>
+                    <h4>Reduced Costs</h4>
+                    <p>Eliminate custom development expenses by leveraging low-code solutions that integrate seamlessly with existing systems.</p>
                 </div>
-                <div class="tech-badge">
-                    <div class="tech-badge-icon">📈</div>
-                    <div class="tech-badge-name">Power BI</div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">😊</div>
+                    <h4>Improved Customer Service</h4>
+                    <p>Automate support tasks and deliver self-service portals that elevate customer experience and satisfaction.</p>
                 </div>
-                <div class="tech-badge">
-                    <div class="tech-badge-icon">🤖</div>
-                    <div class="tech-badge-name">Copilot & AI</div>
-                </div>
-                <div class="tech-badge">
-                    <div class="tech-badge-icon">📧</div>
-                    <div class="tech-badge-name">Exchange Online</div>
-                </div>
-                <div class="tech-badge">
-                    <div class="tech-badge-icon">💬</div>
-                    <div class="tech-badge-name">Teams</div>
-                </div>
-                <div class="tech-badge">
-                    <div class="tech-badge-icon">📚</div>
-                    <div class="tech-badge-name">SharePoint</div>
-                </div>
-                <div class="tech-badge">
-                    <div class="tech-badge-icon">☁️</div>
-                    <div class="tech-badge-name">Azure</div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚀</div>
+                    <h4>Increased Innovation</h4>
+                    <p>Build and deploy new applications faster with Microsoft's low-code platform, enabling rapid digital transformation.</p>
                 </div>
             </div>
         </div>
@@ -774,9 +936,8 @@
             <div class="footer-section">
                 <h4>Connect</h4>
                 <ul>
-                    <li><a href="#">LinkedIn</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#contact">Get Started</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
                 </ul>
             </div>
         </div>
@@ -784,5 +945,148 @@
             <p>&copy; 2026 Gideon Technologies. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Contact Form Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Let's Get Started</h2>
+                <button class="close-btn" onclick="closeContactForm()">&times;</button>
+            </div>
+            <form onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company Name *</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="market">Market Type *</label>
+                    <select id="market" name="market" required>
+                        <option value="">Select market type</option>
+                        <option value="gcc">GCC (Government)</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="both">Both</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Services of Interest *</label>
+                    <div class="services-checklist">
+                        <div class="service-checkbox">
+                            <input type="checkbox" id="service_power_platform" name="services" value="Power Platform">
+                            <label for="service_power_platform">Power Platform</label>
+                        </div>
+                        <div class="service-checkbox">
+                            <input type="checkbox" id="service_office365" name="services" value="Office 365">
+                            <label for="service_office365">Office 365</label>
+                        </div>
+                        <div class="service-checkbox">
+                            <input type="checkbox" id="service_sharepoint" name="services" value="SharePoint">
+                            <label for="service_sharepoint">SharePoint</label>
+                        </div>
+                        <div class="service-checkbox">
+                            <input type="checkbox" id="service_azure" name="services" value="Azure">
+                            <label for="service_azure">Azure</label>
+                        </div>
+                        <div class="service-checkbox">
+                            <input type="checkbox" id="service_ai" name="services" value="Microsoft AI Stack">
+                            <label for="service_ai">Microsoft AI Stack</label>
+                        </div>
+                        <div class="service-checkbox">
+                            <input type="checkbox" id="service_managed" name="services" value="Managed Services">
+                            <label for="service_managed">Managed Services</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tell us about your project</label>
+                    <textarea id="message" name="message" placeholder="Share your project details, goals, or challenges..."></textarea>
+                </div>
+
+                <button type="submit" class="form-submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openContactForm() {
+            document.getElementById("contactModal").classList.add("show");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeContactForm() {
+            document.getElementById("contactModal").classList.remove("show");
+            document.body.style.overflow = "auto";
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const name = formData.get("name");
+            const email = formData.get("email");
+            const phone = formData.get("phone");
+            const company = formData.get("company");
+            const market = formData.get("market");
+            const services = formData.getAll("services").join(", ");
+            const message = formData.get("message");
+            
+            // Compose mailto link with form data
+            const subject = `Gideon Technologies Inquiry from ${name}`;
+            const body = `
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Company: ${company}
+Market Type: ${market}
+Services of Interest: ${services || "Not specified"}
+Project Details: ${message || "Not provided"}
+            `.trim();
+            
+            window.location.href = `mailto:contact@gideon-tech.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            closeContactForm();
+        }
+
+        // Close modal when clicking outside the form
+        window.onclick = function(event) {
+            const modal = document.getElementById("contactModal");
+            if (event.target === modal) {
+                closeContactForm();
+            }
+        }
+
+        // Attach click handlers to all CTA buttons and links
+        document.querySelectorAll('a[href="#contact"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                openContactForm();
+            });
+        });
+
+        document.querySelectorAll('.cta-button, .cta-primary').forEach(button => {
+            if (button.textContent.includes('Get Started') || button.textContent.includes('Contact') || button.textContent.includes('Schedule')) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openContactForm();
+                });
+            }
+        });
+    </script>
 </body>
 </html>
