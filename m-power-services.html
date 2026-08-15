@@ -4,7 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M-Power Managed Services | Gideon Technologies</title>
-    <meta name="description" content="M-Power Managed Services plans, monitoring options, Azure AI managed services, and standalone Microsoft training from Gideon Technologies.">
+    <meta name="description" content="M-Power Managed Services by Gideon Technologies: monitoring plans, managed service plans, Azure AI managed services, and standalone Microsoft training for GCC and commercial organizations.">
+    <meta name="keywords" content="M-Power Managed Services, Microsoft managed services, SharePoint support, Power Platform support, Microsoft 365 Copilot, Copilot Studio, Azure AI managed services, Microsoft training, GCC consulting">
+    <link rel="canonical" href="https://www.gideon-tech.com/m-power-services.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="M-Power Managed Services | Gideon Technologies">
+    <meta property="og:description" content="Flexible monthly Microsoft managed services and training: monitoring, managed service plans, Azure AI services, and role-based training.">
+    <meta property="og:url" content="https://www.gideon-tech.com/m-power-services.html">
+    <meta property="og:image" content="https://www.gideon-tech.com/og-image.png">
+    <meta property="og:site_name" content="Gideon Technologies">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="M-Power Managed Services | Gideon Technologies">
+    <meta name="twitter:description" content="Monitoring, managed service plans, Azure AI support, and standalone Microsoft training for GCC and commercial organizations.">
+    <meta name="twitter:image" content="https://www.gideon-tech.com/og-image.png">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230D8B92'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Arial, sans-serif' font-weight='bold' fill='white' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
     <script>
         (() => {
@@ -115,7 +127,8 @@
             color: var(--cp-accent);
         }
         .has-submenu:hover .submenu,
-        .has-submenu:focus-within .submenu { display: block; }
+        .has-submenu:focus-within .submenu,
+        .has-submenu.open .submenu { display: block; }
 
         .cta-button {
             background: var(--cp-accent);
@@ -213,6 +226,108 @@
             font-weight: 700;
         }
         .btn:hover { background: var(--cp-accent-hover); }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 500;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modal.show { display: flex; }
+        .modal-content {
+            background: var(--cp-surface);
+            border: 1px solid var(--cp-border);
+            border-radius: 0.85rem;
+            width: min(640px, 96vw);
+            max-height: 90vh;
+            overflow: auto;
+            padding: 1.25rem;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.85rem;
+        }
+        .modal-header h2 { font-size: 1.35rem; }
+        .close-btn {
+            border: none;
+            background: transparent;
+            font-size: 1.6rem;
+            color: var(--cp-text-muted);
+            cursor: pointer;
+        }
+        .form-group { margin-bottom: 0.85rem; }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.35rem;
+            color: var(--cp-text);
+            font-weight: 600;
+            font-size: 0.92rem;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid var(--cp-border);
+            border-radius: 0.55rem;
+            background: var(--cp-surface);
+            color: var(--cp-text);
+            padding: 0.58rem 0.65rem;
+            font-size: 0.92rem;
+        }
+        .form-group textarea {
+            min-height: 96px;
+            resize: vertical;
+        }
+        .services-checklist {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.45rem 1rem;
+        }
+        .service-checkbox {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .service-checkbox input { width: auto; }
+        .service-checkbox label {
+            margin: 0;
+            font-weight: 500;
+            color: var(--cp-text-muted);
+        }
+        .form-submit {
+            background: var(--cp-accent);
+            color: var(--cp-accent-fg);
+            padding: 0.75rem 1rem;
+            border-radius: 0.6rem;
+            border: none;
+            width: 100%;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .form-submit:disabled { opacity: 0.7; cursor: not-allowed; }
+        .form-status {
+            padding: 0.75rem 0.85rem;
+            border-radius: 0.55rem;
+            margin-bottom: 0.85rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .form-status-success {
+            background: rgba(22, 163, 74, 0.12);
+            color: #15803d;
+            border: 1px solid rgba(22, 163, 74, 0.35);
+        }
+        .form-status-error {
+            background: rgba(220, 38, 38, 0.12);
+            color: #b91c1c;
+            border: 1px solid rgba(220, 38, 38, 0.35);
+        }
         footer {
             border-top: 1px solid var(--cp-border);
             padding: 1.5rem;
@@ -231,6 +346,7 @@
                 font-size: 0.64rem;
                 border-radius: 0.47rem;
             }
+            .services-checklist { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -252,9 +368,9 @@
                         <li><a href="#pricing-policies">Scope & Policies</a></li>
                     </ul>
                 </li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-            <a href="index.html#contact" class="cta-button">Get Started</a>
+            <a href="#contact" class="cta-button">Get Started</a>
         </nav>
     </header>
 
@@ -415,11 +531,147 @@
     <section class="cta">
         <h2>Need help choosing the right M-Power plan?</h2>
         <p style="color:#4a5568;">We can align monitoring, managed services, and training to your priorities and budget.</p>
-        <a class="btn" href="index.html#contact">Schedule a Consultation</a>
+        <a class="btn" href="#contact">Schedule a Consultation</a>
     </section>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Let's Get Started</h2>
+                <button class="close-btn" onclick="closeContactForm()">&times;</button>
+            </div>
+            <form id="gideonContactForm" onsubmit="handleFormSubmit(event)">
+                <div id="formStatus" class="form-status" style="display:none;"></div>
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company Name *</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+                <div class="form-group">
+                    <label for="market">Market Type *</label>
+                    <select id="market" name="market" required>
+                        <option value="">Select market type</option>
+                        <option value="gcc">GCC (State & Local Government M365 Tenant)</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="both">Both</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Services of Interest *</label>
+                    <div class="services-checklist">
+                        <div class="service-checkbox"><input type="checkbox" id="service_power_platform" name="services" value="Power Platform"><label for="service_power_platform">Power Platform</label></div>
+                        <div class="service-checkbox"><input type="checkbox" id="service_office365" name="services" value="Microsoft 365"><label for="service_office365">Microsoft 365</label></div>
+                        <div class="service-checkbox"><input type="checkbox" id="service_sharepoint" name="services" value="SharePoint"><label for="service_sharepoint">SharePoint</label></div>
+                        <div class="service-checkbox"><input type="checkbox" id="service_azure" name="services" value="Azure"><label for="service_azure">Azure</label></div>
+                        <div class="service-checkbox"><input type="checkbox" id="service_ai" name="services" value="Microsoft AI Stack"><label for="service_ai">Microsoft AI Stack</label></div>
+                        <div class="service-checkbox"><input type="checkbox" id="service_managed" name="services" value="M-Power Managed Services"><label for="service_managed">M-Power Managed Services</label></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Tell us about your project</label>
+                    <textarea id="message" name="message" placeholder="Share your priorities, timelines, and goals..."></textarea>
+                </div>
+                <button type="submit" class="form-submit" id="formSubmitBtn">Submit</button>
+            </form>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2026 Gideon Technologies. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a></p>
     </footer>
+    <script>
+        const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrpzlnwp";
+
+        function openContactForm() {
+            document.getElementById("contactModal").classList.add("show");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeContactForm() {
+            document.getElementById("contactModal").classList.remove("show");
+            document.body.style.overflow = "auto";
+        }
+
+        function showFormStatus(message, type) {
+            const statusEl = document.getElementById("formStatus");
+            statusEl.textContent = message;
+            statusEl.className = `form-status form-status-${type}`;
+            statusEl.style.display = "block";
+        }
+
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitBtn = document.getElementById("formSubmitBtn");
+            const formData = new FormData(form);
+            const name = formData.get("name");
+            formData.set("_subject", `Gideon Technologies Inquiry from ${name}`);
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Sending...";
+            try {
+                const response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: "POST",
+                    body: formData,
+                    headers: { "Accept": "application/json" }
+                });
+                if (response.ok) {
+                    showFormStatus("Thank you! Your message has been sent. We'll be in touch within 24 hours.", "success");
+                    form.reset();
+                    setTimeout(closeContactForm, 2500);
+                } else {
+                    const data = await response.json().catch(() => null);
+                    const errorMsg = data && data.errors ? data.errors.map(e => e.message).join(", ") : "Something went wrong. Please try again.";
+                    showFormStatus(errorMsg, "error");
+                }
+            } catch (err) {
+                showFormStatus("Network error. Please try again, or email contact@gideon-tech.com directly.", "error");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Submit";
+            }
+        }
+
+        document.querySelectorAll('a[href="#contact"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                openContactForm();
+            });
+        });
+
+        // Make submenu usable on touch devices
+        document.querySelectorAll('.has-submenu > a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.matchMedia('(hover: none)').matches) {
+                    const parent = this.parentElement;
+                    if (!parent.classList.contains('open')) {
+                        e.preventDefault();
+                        document.querySelectorAll('.has-submenu.open').forEach(item => {
+                            if (item !== parent) item.classList.remove('open');
+                        });
+                        parent.classList.add('open');
+                    }
+                }
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.has-submenu')) {
+                document.querySelectorAll('.has-submenu.open').forEach(item => item.classList.remove('open'));
+            }
+            const modal = document.getElementById("contactModal");
+            if (e.target === modal) closeContactForm();
+        });
+    </script>
 </body>
 </html>
