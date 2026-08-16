@@ -64,6 +64,7 @@
             background: var(--cp-bg);
             color: var(--cp-text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         header {
             position: sticky;
@@ -91,7 +92,6 @@
             gap: 2rem;
             list-style: none;
         }
-        .nav-links li { position: relative; }
         .nav-links a {
             color: var(--cp-text);
             text-decoration: none;
@@ -100,43 +100,33 @@
         }
         .nav-links a:hover { color: var(--cp-accent); }
 
-        .submenu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            min-width: 260px;
-            background: var(--cp-surface);
-            border: 1px solid var(--cp-border);
-            border-radius: 0.625rem;
-            box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-            list-style: none;
-            padding: 0.45rem;
-            z-index: 200;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transform: translateY(6px);
-            transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
-        }
-        .submenu li { position: static; }
-        .submenu a {
-            display: block;
-            padding: 0.5rem 0.65rem;
-            border-radius: 0.45rem;
-            color: var(--cp-text-muted);
-            font-size: 0.9rem;
-        }
-        .submenu a:hover {
+        .section-nav {
             background: var(--cp-bg-elevated);
-            color: var(--cp-accent);
+            border-bottom: 1px solid var(--cp-border);
         }
-        .has-submenu:hover .submenu,
-        .has-submenu:focus-within .submenu,
-        .has-submenu.open .submenu {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-            transform: translateY(0);
+        .section-nav-list {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.65rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.65rem;
+            list-style: none;
+        }
+        .section-nav a {
+            display: block;
+            padding: 0.45rem 0.7rem;
+            border-radius: 0.5rem;
+            color: var(--cp-text-muted);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .section-nav a:hover,
+        .section-nav a:focus {
+            background: var(--cp-surface);
+            color: var(--cp-accent);
         }
 
         .cta-button {
@@ -191,9 +181,10 @@
         .section p { color: var(--cp-text-muted); }
         .grid-3 {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 1rem;
             margin-top: 1rem;
+            width: 100%;
         }
         .card {
             background: var(--cp-surface);
@@ -201,6 +192,8 @@
             border-radius: 0.8rem;
             padding: 1rem;
             box-shadow: var(--cp-shadow);
+            min-width: 0;
+            overflow-wrap: anywhere;
         }
         .price {
             color: var(--cp-accent);
@@ -362,6 +355,48 @@
                 border-radius: 0.47rem;
             }
             .services-checklist { grid-template-columns: 1fr; }
+            .section-nav-list {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding: 0.6rem 1rem;
+                scrollbar-width: thin;
+            }
+        }
+        @media (max-width: 480px) {
+            nav {
+                gap: 0.75rem;
+            }
+
+            .logo {
+                font-size: 1.05rem;
+                line-height: 1.15;
+            }
+
+            .hero {
+                padding: 2rem 1rem 1.25rem;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+                line-height: 1.15;
+            }
+
+            .section {
+                padding: 1.5rem 1rem;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            .grid-3 {
+                display: flex;
+                flex-direction: column;
+                gap: 0.9rem;
+            }
+
+            .card {
+                width: 100%;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -373,21 +408,22 @@
                 <li><a href="index.html#about">About</a></li>
                 <li><a href="index.html#markets">Customer Experience</a></li>
                 <li><a href="index.html#services">Core Services</a></li>
-                <li class="has-submenu">
-                    <a href="m-power-services.html">M-Power Plans</a>
-                    <ul class="submenu">
-                        <li><a href="#monitoring">Monitoring Plans</a></li>
-                        <li><a href="#managed">Managed Service Plans</a></li>
-                        <li><a href="#azure-ai">Azure AI Managed Services</a></li>
-                        <li><a href="#training">Training Services</a></li>
-                        <li><a href="#pricing-policies">Scope & Policies</a></li>
-                    </ul>
-                </li>
+                <li><a href="m-power-services.html">M-Power Plans</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <a href="#contact" class="cta-button">Get Started</a>
         </nav>
     </header>
+
+    <nav class="section-nav" aria-label="M-Power sections">
+        <ul class="section-nav-list">
+            <li><a href="#monitoring">Monitoring Plans</a></li>
+            <li><a href="#managed">Managed Service Plans</a></li>
+            <li><a href="#azure-ai">Azure AI Managed Services</a></li>
+            <li><a href="#training">Training Services</a></li>
+            <li><a href="#pricing-policies">Scope & Policies</a></li>
+        </ul>
+    </nav>
 
     <section class="hero">
         <h1>M-Power Managed Services</h1>
@@ -664,26 +700,7 @@
             });
         });
 
-        // Make submenu usable on touch devices
-        document.querySelectorAll('.has-submenu > a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (window.matchMedia('(hover: none)').matches) {
-                    const parent = this.parentElement;
-                    if (!parent.classList.contains('open')) {
-                        e.preventDefault();
-                        document.querySelectorAll('.has-submenu.open').forEach(item => {
-                            if (item !== parent) item.classList.remove('open');
-                        });
-                        parent.classList.add('open');
-                    }
-                }
-            });
-        });
-
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.has-submenu')) {
-                document.querySelectorAll('.has-submenu.open').forEach(item => item.classList.remove('open'));
-            }
             const modal = document.getElementById("contactModal");
             if (e.target === modal) closeContactForm();
         });
